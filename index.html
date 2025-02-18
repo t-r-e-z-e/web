@@ -3,16 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Code para Acessar o Site</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <title>ruína</title>
+    <style>
+        body {
+            background-image: url('https://wallpapercave.com/wp/wp3992956.jpg');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            max-width: 90%;
+        }
+        h1 {
+            font-size: 2em;
+        }
+        p {
+            font-size: 1.2em;
+        }
+        .buttons-container {
+            width: 300px;
+            height: 400px;
+            position: relative;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid white;
+            border-radius: 10px;
+        }
+        .btn {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: 0.3s;
+            position: absolute;
+        }
+        .yes {
+            background: #4CAF50;
+            color: white;
+            bottom: 20px;
+        }
+        .no {
+            background: #FF0000;
+            color: white;
+        }
+        .yes:hover, .yes:active {
+            background: #45a049;
+        }
+
+        #lady{
+            color: darkblue;
+        }
+        #dante{
+            color: darkred;
+        }
+        .lady{
+            background-color: darkblue;
+        }
+        .dante{
+            background-color: darkred;
+        }
+    </style>
 </head>
 <body>
-    <h2>Escaneie o QR Code para acessar a página:</h2>
-    <div id="qrcode"></div>
-
+    <div class="container">
+        <h1>...</h1>
+        <p class="lady"><b id="lady">Lady:</b> Are you crying?</p>
+        <p class="dante"><b id="dante">Dante:</b> It's only the rain.</p>
+        <p class="lady"><b id="lady">Lady:</b> The rain already stopped.</p>
+        <p class="dante"><b id="dante">Dante:</b> Devils never cry.</p>
+        <p class="lady"><b id="lady">Lady:</b> I see.</p> 
+        <p class="lady"><b id="lady">Lady:</b> Maybe somewhere out there <br>even a devil may cry when he loses a loved one.<br> Don't you think?</p>
+        <div class="buttons-container">
+            <button class="btn yes" onclick="respostaSim()">Sim! 💖</button>
+            <button class="btn no" id="noButton" onmouseover="fugir()" ontouchstart="fugir()">Não 😢</button>
+        </div>
+    </div>
+    
     <script>
-        let url = "https://0c5de2c9-2275-41bc-ab94-06e784ef18b9-00-fgz2i31rcqjs.picard.replit.dev/"; // Substitua pela URL do seu site
-        new QRCode(document.getElementById("qrcode"), url);
+        function respostaSim() {
+            document.body.innerHTML = '<h1 style="margin-top:20vh; color:white;">Você é minha estrela cadente! 💫</h1><p style="font-size:1.5em;">Mal posso esperar para viver esse conto de fadas com você! 💖</p>';
+        }
+
+        function fugir() {
+            let button = document.getElementById("noButton");
+            let container = document.querySelector(".buttons-container");
+            let yesButton = document.querySelector(".yes");
+            let maxX = container.clientWidth - button.clientWidth;
+            let maxY = container.clientHeight - button.clientHeight;
+            let newX, newY;
+            
+            do {
+                newX = Math.random() * maxX;
+                newY = Math.random() * maxY;
+            } while (
+                newX + button.clientWidth > yesButton.offsetLeft &&
+                newX < yesButton.offsetLeft + yesButton.clientWidth &&
+                newY + button.clientHeight > yesButton.offsetTop &&
+                newY < yesButton.offsetTop + yesButton.clientHeight
+            );
+            
+            button.style.left = `${newX}px`;
+            button.style.top = `${newY}px`;
+        }
     </script>
 </body>
 </html>
